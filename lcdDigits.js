@@ -1,17 +1,11 @@
 function setNumShow(digitArr) {
   let digitRow = [[], [], []]
-  digitArr.forEach(item => {
-    item.forEach((i, index) => {
-      if(index < 3) {
-        digitRow[0].push(i)
-      } else if(index < 6) {
-        digitRow[1].push(i)
-      } else {
-        digitRow[2].push(i)
-      }
-    })
-  })
   let digitStr = ''
+  digitArr.forEach(item => {
+    digitRow[0] = digitRow[0].concat(item.slice(0, 3))
+    digitRow[1] = digitRow[1].concat(item.slice(3, 6))
+    digitRow[2] = digitRow[2].concat(item.slice(6))
+  })
   digitRow.forEach(i => {
     i.forEach((item, index) => {
       switch (item) {
@@ -30,6 +24,8 @@ function setNumShow(digitArr) {
 }
 
 function lcdDigits(number) {
+  let startTime = new Date().getTime()
+  console.log(startTime)
   let numShowObj = {
     '0': [1, 2, 1, 3, 1, 3, 3, 2, 3],
     '1': [1, 1, 1, 1, 1, 3, 1, 1, 3],
@@ -47,7 +43,9 @@ function lcdDigits(number) {
     return numShowObj[item]
   })
   setNumShow(digitArr)
-  return ''
+  let endTime = new Date().getTime()
+  console.log(endTime)
+  return endTime - startTime
 }
 
-console.log(lcdDigits('18382427667'))
+console.log(lcdDigits('18345354354325432543254325432542354'))
