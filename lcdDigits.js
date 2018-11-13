@@ -1,19 +1,30 @@
 function setNumShow(digitArr) {
-  let digitRow = []
+  let digitRow = [[], [], []]
   digitArr.forEach(item => {
-    // if(item % 3)
+    item.forEach((i, index) => {
+      if(index < 3) {
+        digitRow[0].push(i)
+      } else if(index < 6) {
+        digitRow[1].push(i)
+      } else {
+        digitRow[2].push(i)
+      }
+    })
   })
   let digitStr = ''
-  digitRow.forEach((item, index) => {
-    switch (item) {
-      case 1: digitStr += '.';break;
-      case 2: digitStr += '_';break;
-      case 3: digitStr += '|';break;
-      default: digitStr += '.'
-    }
-    if((index + 1) % 3 === 0) {
-      digitStr += '  '
-    }
+  digitRow.forEach(i => {
+    i.forEach((item, index) => {
+      switch (item) {
+        case 1: digitStr += '.';break;
+        case 2: digitStr += '_';break;
+        case 3: digitStr += '|';break;
+        default: digitStr += '.'
+      }
+      if((index + 1) % 3 === 0) {
+        digitStr += '  '
+      }
+    })
+    digitStr += '\n'
   })
   console.log(digitStr)
 }
@@ -39,4 +50,4 @@ function lcdDigits(number) {
   return ''
 }
 
-console.log(lcdDigits(1234567890))
+console.log(lcdDigits('18382427667'))
