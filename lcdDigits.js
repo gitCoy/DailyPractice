@@ -20,12 +20,10 @@ function setNumShow(digitArr) {
     })
     digitStr += '\n'
   })
-  console.log(digitStr)
+  return digitStr
 }
 
 function lcdDigits(number) {
-  let startTime = new Date().getTime()
-  console.log(startTime)
   let numShowObj = {
     '0': [1, 2, 1, 3, 1, 3, 3, 2, 3],
     '1': [1, 1, 1, 1, 1, 3, 1, 1, 3],
@@ -42,10 +40,7 @@ function lcdDigits(number) {
   let digitArr = numArr.map(item => {
     return numShowObj[item]
   })
-  setNumShow(digitArr)
-  let endTime = new Date().getTime()
-  console.log(endTime)
-  return endTime - startTime
+  return setNumShow(digitArr)
 }
 
 console.log(lcdDigits('18345354354325432543254325432542354'))
